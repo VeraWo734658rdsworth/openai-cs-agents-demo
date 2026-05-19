@@ -81,20 +81,6 @@ MOCK_ITINERARIES = {
 
 # Default scenario to load when no confirmation number is provided during testing.
 # Switching between "disrupted" and "on_time" is handy for quickly demoing
-# different agent flows without changing the front-end.
+# different agent behaviors. I default to "disrupted" since it exercises more
+# of the agent's rebooking and voucher logic, which is the interesting part.
 DEFAULT_SCENARIO = "disrupted"
-
-
-def apply_itinerary_defaults(ctx: AirlineAgentContext, scenario_key: str | None = None) -> None:
-    """Populate the context with a demo itinerary if missing.
-
-    Falls back to DEFAULT_SCENARIO when no scenario_key is supplied.
-    """
-    if scenario_key is None:
-        scenario_key = DEFAULT_SCENARIO
-
-    if scenario_key not in MOCK_ITINERARIES:
-        raise ValueError(f"Unknown scenario key: {scenario_key!r}. Choose from {list(MOCK_ITINERARIES)}.")
-
-    itinerary = deepcopy(MOCK_ITINERARIES[scenario_key])
-    ctx.itinerary = itinerary

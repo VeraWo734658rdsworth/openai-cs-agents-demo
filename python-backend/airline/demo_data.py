@@ -81,6 +81,7 @@ MOCK_ITINERARIES = {
 
 # Default scenario to load when no confirmation number is provided during testing.
 # Switching between "disrupted" and "on_time" is handy for quickly demoing
-# different agent behaviors without needing real booking data.
-# Use "disrupted" to exercise the rebooking/voucher flows, "on_time" for the happy path.
+# different agent behaviours without needing a real booking lookup.
+# I default to "disrupted" because it exercises the most interesting agent paths
+# (rebooking, voucher issuance, etc.) during local development.
 DEFAULT_SCENARIO = "disrupted"
